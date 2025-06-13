@@ -33,6 +33,7 @@ model Business {
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  hours       BusinessHours[]
 }
 
 model Discount {
