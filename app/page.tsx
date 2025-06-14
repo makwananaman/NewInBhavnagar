@@ -267,7 +267,7 @@ const categories = [
     icon: "🍽️",
     title: "Food & Dining",
     description: "Explore restaurants, cafes, and local cuisine",
-    image: "https://source.unsplash.com/800x600/?restaurant"
+    image: "https://source.unsplash.com/800x600/?art-gallery"
   },
   {
     icon: "🎨",
@@ -293,21 +293,21 @@ const updates = [
     category: "Culture",
     title: "New Art Gallery Opening",
     description: "Experience modern art at the city's newest gallery space",
-    image: "https://source.unsplash.com/800x600/?art-gallery"
+    image: "/images/art.jpg"
   },
   {
     icon: "🍽️",
     category: "Food",
     title: "Food Festival 2024",
     description: "Annual food festival featuring local cuisines",
-    image: "https://source.unsplash.com/800x600/?indian-food"
+    image: "/images/food-festival.jpg"
   },
   {
     icon: "🏛️",
     category: "Heritage",
     title: "Heritage Walk Tours",
     description: "Weekly guided tours of historical sites",
-    image: "https://source.unsplash.com/800x600/?india-heritage"
+    image: "/images/heritage.png"
   }
 ]
 

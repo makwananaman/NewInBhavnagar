@@ -1,117 +1,125 @@
-import Link from 'next/link'
-import { ArrowRight, Users, Globe, Heart } from 'lucide-react'
-import Image from 'next/image'
+'use client'
 
-export default function AboutPage() {
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export default function AboutUsPage() {
   return (
-    <main className="min-h-screen py-20">
+    <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gray-50 dark:bg-gray-900 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            About <span className="text-primary-600">NewInBhavnagar</span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl">
-            Your comprehensive guide to discovering and experiencing the vibrant city of Bhavnagar.
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20 px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">About New In Bhavnagar</h1>
+          <p className="text-lg md:text-xl text-primary-100">
+            Discover the heart of Bhavnagar through its finest local businesses, services and more — all in one place.
           </p>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Our Mission
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                We strive to connect residents and visitors with the best of Bhavnagar, making it easier to discover local businesses, events, and experiences that make our city unique.
-              </p>
-              <p className="text-gray-600 dark:text-gray-300">
-                Our platform serves as a bridge between the community and local establishments, fostering growth and cultural exchange.
-              </p>
-            </div>
-            <div className="relative h-64 rounded-2xl overflow-hidden">
-              <Image
-                src="https://source.unsplash.com/800x600/?city-life"
-                alt="City Life"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+      {/* Our Mission */}
+      <section className="py-20 px-6 max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            We're on a mission to support local growth by showcasing trusted and verified businesses in Bhavnagar.
+            Whether you're a resident or visitor, find everything you need with confidence.
+          </p>
+        </motion.div>
+
+        {/* Animated Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {[
+            {
+              title: 'Verified Listings',
+              desc: 'Only genuine, curated businesses appear on our platform.',
+              icon: '/icons/check.svg'
+            },
+            {
+              title: 'Community Driven',
+              desc: 'Your feedback helps improve and expand the network.',
+              icon: '/icons/community.svg'
+            },
+            {
+              title: 'Promoting Local Economy',
+              desc: 'We help customers and businesses grow together.',
+              icon: '/icons/growth.svg'
+            },
+          ].map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 text-center shadow hover:shadow-lg transition"
+            >
+              <div className="w-16 h-16 mx-auto mb-4">
+                <Image src={feature.icon} alt={feature.title} width={64} height={64} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400">{feature.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-            Meet Our Team
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div key={index} className="text-center">
-                <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-primary-600 dark:text-primary-400 mb-2">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  {member.description}
-                </p>
-              </div>
-            ))}
+      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center max-w-4xl mx-auto"
+        >
+          <h2 className="text-3xl font-bold mb-6">Meet the Creator</h2>
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/founder.jpg"
+              alt="Founder"
+              width={120}
+              height={120}
+              className="rounded-full mb-4"
+            />
+            <h3 className="text-xl font-semibold">Naman Makwana</h3>
+            <p className="text-gray-500 dark:text-gray-400">Founder & Developer of New In Bhavnagar</p>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Get in Touch
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
-            Have questions or suggestions? We'd love to hear from you!
+      {/* Call to Action */}
+      <section className="py-20 px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="bg-primary-600 text-white p-10 rounded-2xl shadow-lg inline-block"
+        >
+          <h2 className="text-2xl font-bold mb-4">Want your business featured?</h2>
+          <p className="mb-6 text-primary-100">
+            We’re open to new listings. Submit your business and get discovered!
           </p>
-          <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg transition-colors">
+          <Link
+            href="/contact"
+            className="bg-white text-primary-600 font-semibold px-6 py-2 rounded-full hover:bg-primary-100"
+          >
             Contact Us
-          </button>
-        </div>
+          </Link>
+        </motion.div>
       </section>
-    </main>
+    </div>
   )
 }
-
-const team = [
-  {
-    name: "Raj Patel",
-    role: "Founder & CEO",
-    description: "Passionate about connecting people with local experiences.",
-    image: "https://source.unsplash.com/800x800/?portrait-man-1"
-  },
-  {
-    name: "Priya Shah",
-    role: "Community Manager",
-    description: "Expert in building and nurturing local communities.",
-    image: "https://source.unsplash.com/800x800/?portrait-woman-1"
-  },
-  {
-    name: "Amit Desai",
-    role: "Content Director",
-    description: "Curates the best local content and experiences.",
-    image: "https://source.unsplash.com/800x800/?portrait-man-2"
-  }
-]
-

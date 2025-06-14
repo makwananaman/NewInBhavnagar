@@ -4,16 +4,16 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-  // Clear existing data
+  // Clear existing businesses and users (optional)
   await prisma.business.deleteMany()
+  await prisma.user.deleteMany()
 
-  // Create sample businesses
+  // Seed sample businesses
   await prisma.business.createMany({
     data: [
       {
         name: "Spice Haven Restaurant",
         type: "Restaurant",
-        
         address: "123 Main Street, Bhavnagar",
         phone: "+91 1234567890",
         website: "www.spicehaven.com",
@@ -41,22 +41,25 @@ async function main() {
     ]
   })
 
-  // Create admin user
+  // Seed admin user
+  const hashedPassword = await bcrypt.hash('12345', 10)
+
   await prisma.user.create({
     data: {
       email: 'newinbhavnagar@gmail.com',
-      password: await bcrypt.hash('12345', 10)
+      password: hashedPassword,
+      name: 'Admin'
     }
   })
 
-  console.log('Database has been seeded!')
+  console.log('✅ Database has been seeded successfully!')
 }
 
 main()
   .catch((e) => {
-    console.error(e)
+    console.error('❌ Seeding failed:', e)
     process.exit(1)
   })
   .finally(async () => {
     await prisma.$disconnect()
-  }) 
+  })
